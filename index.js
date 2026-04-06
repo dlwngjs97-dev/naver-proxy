@@ -10,7 +10,7 @@ const NAVER = 'https://api.commerce.naver.com'
 
 // 시크릿 검증
 app.use((req, res, next) => {
-  if (req.path === '/health') return next()
+  if (req.path === '/health' || req.path === '/my-ip') return next()
   if (req.headers['x-proxy-secret'] !== SECRET) {
     return res.status(401).json({ error: 'Unauthorized' })
   }
