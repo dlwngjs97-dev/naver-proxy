@@ -20,6 +20,16 @@ app.use((req, res, next) => {
 // 헬스체크
 app.get('/health', (_, res) => res.json({ ok: true }))
 
+// 이 서버의 outbound IP 확인용
+app.get('/my-ip', async (_, res) => {
+  try {
+    const r = await axios.get('https://api.ipify.org?format=json')
+    res.json(r.data)
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+})
+
 // 이미지 업로드 (multipart는 별도 처리)
 app.post('/upload-image', async (req, res) => {
   try {
