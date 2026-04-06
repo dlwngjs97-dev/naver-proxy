@@ -3,6 +3,7 @@ const axios = require('axios')
 const app = express()
 
 app.use(express.json({ limit: '50mb' }))
+app.use(express.urlencoded({ extended: true, limit: '50mb' }))
 
 const SECRET = process.env.PROXY_SECRET
 const NAVER = 'https://api.commerce.naver.com'
